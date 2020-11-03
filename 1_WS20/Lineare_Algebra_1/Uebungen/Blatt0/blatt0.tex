@@ -1,0 +1,86 @@
+% document setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% maths
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% utility
+\usepackage{xcolor}
+\usepackage[colorlinks=false,linkbordercolor=red,urlbordercolor=red]{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+
+% useful commands
+\newcommand{\qed}{\null\nobreak\hfill\square}
+
+% title, author etc.
+\title{Lineare Algebra I, Blatt 0}
+\author{Lorenz Bung (Matr.-Nr. 5113060), Gruppe 4\\\href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}}
+\date{\today}
+
+% begin document
+\begin{document}
+
+\maketitle
+
+
+\section*{Aufgabe 1}
+
+Induktionsbehauptung (IB): $n! > 2^n, n \geq 4.$\\
+Induktionsanfang (IA) ($n = 4$): $n! = 4! = 4 * 3 * 2 * 1 = 24 > 16 = 2^4.$\\
+Induktionsschritt (IS): $$(n + 1)! = (n + 1) * n! \overset{\text{(IB)}}{>} (n + 1) * 2^n \overset{n \geq 4}{>} 2^2 * 2^n = 2^{n + 2} > 2^{n + 1}.$$\\
+$\qed$
+
+
+\section*{Aufgabe 2}
+
+Induktionsbehauptung (IB): $\sum\limits_{k = 1}^n \frac{1}{k (k + 1)} = \frac{n}{n + 1}, n > 0.$\\
+Induktionsanfang (IA) ($n = 1$): $\sum\limits_{k = 1}^1 \frac{1}{k (k + 1)} = \frac{1}{1 * 2} = \frac{1}{2}.$\\
+Induktionsschritt (IS):
+$$\sum\limits_{k = 1}^{n + 1} \frac{1}{k (k + 1)} = \sum\limits_{k = 1}^n \frac{1}{k (k + 1)} + \frac{1}{(n + 1) (n + 2)}$$
+$$\overset{\text{(IB)}}{=} \frac{n}{n + 1} + \frac{1}{(n + 1)(n + 2)} = \frac{n(n + 2) + 1}{(n + 1)(n + 2)}$$
+$$= \frac{n^2 + 2n + 1}{(n + 1)(n + 2)} = \frac{(n + 1)^2}{(n + 1)(n + 2)} = \frac{n + 1}{n + 2}.$$\\
+$\qed$
+
+
+\section*{Aufgabe 3}
+\label{sec:a3}
+
+Zunächst wird gezeigt, dass
+\begin{equation}
+\label{eq1}
+\sum\limits_{k = 0}^n 2^k = 2^{n + 1} - 1.
+\end{equation}
+
+\subsection*{Beweis zu \ref{eq1}}
+Induktionsbehauptung (IB): $\sum\limits_{k = 0}^n 2^k = 2^{n + 1} - 1.$\\
+Induktionsanfang (IA) ($n = 0$): $\sum\limits_{k = 0}^0 2^k = 2^0 = 1 = 2 - 1 = 2^1 - 1$.\\
+Induktionsschritt (IS): $$\sum\limits_{k = 0}^{n + 1} 2^k = \sum\limits_{k = 0}^n 2^k + 2^{n + 1} \overset{\text{(IB)}}{=} 2^{n + 1} - 1 + 2^{n + 1} = 2^{n + 2} - 1.$$\\
+$\qed$
+
+\subsection*{Beweis zu \nameref{sec:a3}}
+Induktionsbehauptung (IB): $f(n) \leq 2^{2^n}$.\\
+Induktionsanfang (IA) ($n = 0$): $f(0) = 2 \leq 2 = 2^1 = 2^{2^0}$.\\
+Induktionsschritt (IS):\\
+Nach dem Satz von Euklid existiert eine Primzahl $m := 1 + \prod\limits_{k = 0}^n f(n).$\\
+Da nicht garantiert ist, dass dies die nächstgrößere Primzahl ist, gilt zwar keine Gleichheit, jedoch auf jeden Fall $$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(n).$$\\
+Aufgrund (IB) ist
+$$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(n) \leq 1 + \prod\limits_{k = 0}^n 2^{2^n}$$
+$$= 1 + (2^{2^0} * 2^{2^1} * \dots * 2^{2^n}) = 1 + 2^{2^0 + 2^1 + \dots + 2^n} = 1 + 2^{\sum_{k=0}^{n} 2^k}$$
+$$\overset{\text{(\ref{eq1})}}{=} 1 + 2^{2^{n + 1} - 1} = \frac{2}{2} + \frac{2^{2^{n + 1}}}{2} = \frac{2^{2^{n + 1} + 1}}{2} = 2^{2^{n + 1}}.$$
+$\qed$
+
+
+\section*{Aufgabe 4}
+
+\begin{enumerate}[(a)]
+    \item Ja, da keine der durch $(0, 0)$ und $(0, 1)$ gehenden Geraden auch durch $(1, 0)$ geht.
+    \item Nein, da gegenüberliegende Punkte auf dem Einheitskreis in der selben Äquivalenzklasse liegen. Beispiel: $[(0, 1)]_E = [(0, -1)]_E$.
+\end{enumerate}
+
+% end document
+\end{document}

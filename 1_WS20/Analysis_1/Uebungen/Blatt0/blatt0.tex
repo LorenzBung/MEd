@@ -1,0 +1,79 @@
+% document setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% maths
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% utility
+\usepackage{xcolor}
+\usepackage[colorlinks=false,linkbordercolor=red,urlbordercolor=red]{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+
+% useful commands
+\newcommand{\qed}{\null\nobreak\hfill\square}
+
+% title, author etc.
+\title{Analysis I, Blatt 0}
+\author{Lorenz Bung (Matr.-Nr. 5113060), Gruppe 11\\\href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}}
+\date{\today}
+
+% begin document
+\begin{document}
+
+\maketitle
+
+
+\section*{Aufgabe 0}
+
+\begin{figure}[ht!]
+    \centering
+    \begin{minipage}[t][][b]{0.45\textwidth}
+        \def\vennA{(0,0) circle (1.5cm)}
+        \def\vennB{(60:2cm) circle (1.5cm)}
+        \def\vennC{(0:2cm) circle (1.5cm)}
+        \begin{tikzpicture}
+        \draw \vennA node[below] {$A$};
+        \draw \vennB node[above] {$B$};
+        \draw \vennC node[below] {$C$};
+        \draw (1.75,1) -- (3,2) node[right,fill=red!30]{$B \cap C$};
+
+        \begin{scope}
+            \clip \vennB;
+            \fill[red,opacity=0.3] \vennC;
+        \end{scope}
+        \fill[blue,opacity=0.3] \vennA;
+        \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[t][][b]{0.45\textwidth}
+        \def\vennA{(0,0) circle (1.5cm)}
+        \def\vennB{(60:2cm) circle (1.5cm)}
+        \def\vennC{(0:2cm) circle (1.5cm)}
+        \begin{tikzpicture}
+        \draw \vennA node[below] {$A$};
+        \draw \vennB node[above] {$B$};
+        \draw \vennC node[below] {$C$};
+        \draw (0.25,1) -- (-1,2) node[left,fill=red!30]{$A \cup B$};
+        \draw (1,-0.5) -- (1,-1.75) node[below,fill=blue!30]{$A \cup C$};
+
+        \begin{scope}[even odd rule]
+            \clip \vennB (-3,-3) rectangle (3,3);
+            \fill[red,opacity=0.3] \vennA;
+        \end{scope}
+        \fill[red,opacity=0.3] \vennB;
+        \fill[blue,opacity=0.3] \vennA;
+        \begin{scope}[even odd rule]
+            \clip \vennA (-3,-3) rectangle (5,3);
+            \fill[blue,opacity=0.3] \vennC;
+        \end{scope}
+        \end{tikzpicture}
+    \end{minipage}
+\caption{$A \cup (B \cap C)$}
+\end{figure}
+
+% end document
+\end{document}

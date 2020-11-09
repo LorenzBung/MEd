@@ -74,6 +74,103 @@
     \end{minipage}
 \caption{$A \cup (B \cap C)$}
 \end{figure}
+\pagebreak
+
+
+\section*{Aufgabe 1}
+
+\begin{enumerate}[(i)]
+    \item Die Potenzmenge $\mathcal{P}(M)$ enthält alle Teilmengen der Menge $M$. \begin{enumerate}[a)]
+        \item $\mathcal{P}(\{1\}) = \{\emptyset, \{1\}\}.$
+        \item $\mathcal{P}(\{1, 2, 3\}) = \{\emptyset, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}.$
+        \item $\mathcal{P}(\emptyset) = \{\emptyset\}.$
+    \end{enumerate}
+
+    \item \begin{enumerate}[a)]
+        \item falsch
+        \item wahr
+        \item falsch
+        \item falsch
+    \end{enumerate}
+
+    \item $X = Y$, wenn $(X \subset Y) \wedge (Y \subset X).$ Die leere Menge ist (lt. Skript) jedoch Teilmenge jeder anderen Menge, somit auch der leeren Menge selbst. Daher gilt $X \subset Y$ und $Y \subset X$ und es folgt $X = Y$.
+
+    \item Für Teilmengen gilt
+    \begin{equation}
+    \label{a1eq1}
+    A \subset B \Leftrightarrow \forall x \in A: x \in B.
+    \end{equation}
+    Weiterhin gilt $A \cup B \Leftrightarrow x \in A \vee x \in B$ und $A \cap B \Leftrightarrow x \in A \wedge x \in B.$
+    Aufgrund von (\ref*{a1eq1}) ist somit $A \cup B \overset{(\ref{a1eq1})}{\Leftrightarrow} x \in B \vee x \in B \Leftrightarrow x \in B$ (Schnitt analog).
+
+    \item $(X \times Y) \cup (A \times Y) \Leftrightarrow \{(a, b) | a \in X, b \in Y\} \cup \{(c, d) | c \in A, d \in Y\}$\\
+    $\Leftrightarrow x \in \{(a, b) | a \in X, b \in Y\} \vee x \in \{(c, d) | c \in A, d \in Y\}$
+    %$\Leftrightarrow \{(a, b) | a \in X \wedge a \in A, b \in Y\} \Leftrightarrow $
+\end{enumerate}
+
+
+\section*{Aufgabe 2}
+
+\begin{enumerate}[(i)]
+    \item \begin{enumerate}
+        \item $\{(a,b), (a,c), (b,c)\}$: Nein
+        \item $\{(a,b), (b,a), (c,c)\}$: Ja, und zwar
+        \[
+        f: \left\{\begin{array}{l}
+        a \mapsto b\\
+        b \mapsto a\\
+        c \mapsto c
+        \end{array}\right..
+        \]
+    \end{enumerate}
+
+    \item $A \subset B \Leftrightarrow \forall x \in A: x \in B \Rightarrow \forall y \in f(A): y \in f(B) \Rightarrow f(A) \subset f(B).$
+
+    \item
+
+    \item
+\end{enumerate}
+
+
+\section*{Aufgabe 3}
+
+\begin{enumerate}[(i)]
+    \item \begin{itemize}
+        \item \textit{reflexiv}: Nein, da eine Gerade nicht zu sich selbst orthogonal sein kann (also $g \not\perp g$).
+        \item \textit{symmetrisch}: Ja, denn $g \perp h \Leftrightarrow h \perp g$.
+        \item \textit{antisymmetrisch}: Nein, da (im $\mathbb{R}^2$) $g \perp h \wedge h \perp i \Rightarrow g = i$.
+        \item \textit{transitiv}: Nein, beispielsweise sei $g = i$ und $g \perp h$ sowie $h \perp i$. Dann ist jedoch nicht $g \perp i$, da $g = i$.
+    \end{itemize}
+
+    \item $R$ ist Äquivalenzrelation genau dann, wenn $R$ \textit{reflexiv}, \textit{symmetrisch} und \textit{transitiv} ist.
+    \begin{itemize}
+        \item \textit{reflexiv}: Ja, denn $g \parallel g$ (folgt aus Aufgabenstellung)
+        \item \textit{symmetrisch}: Ja, denn $g \parallel h \Rightarrow h \parallel g$
+        \item \textit{transitiv}: Ja, denn $g \parallel h \wedge h \parallel i \Rightarrow g \parallel i$.
+    \end{itemize}
+    Somit handelt es sich um eine Äquivalenzrelation.
+
+    \item $\sim$ ist Äquivalenzrelation genau dann, wenn $\sim$ \textit{reflexiv}, \textit{symmetrisch} und \textit{transitiv} ist.
+    \begin{itemize}
+        \item \textit{reflexiv}: Ja, da $(r_1, r_2) \sim (r_1, r_2) \Leftrightarrow r_1r_2 = r_1r_2.$
+        \item \textit{symmetrisch}: Ja: $(r_1, r_2) \sim (s_1, s_2) \Leftrightarrow r_1s_2 = r_2s_1 \Leftrightarrow s_2r_1 = s_1r_2 \Leftrightarrow s_1r_2 = s_2r_1 \Leftrightarrow (s_1, s_2) \sim (r_1, r_2).$
+        \item \textit{transitiv}:
+        \begin{align*}
+        &(r_1, r_2) \sim (s_1, s_2) \wedge (s_1, s_2) \sim (t_1, t_2)\\
+        \Leftrightarrow &r_1s_2 = r_2s_1 \wedge s_1t_2 = s_2t_1\\
+        \Leftrightarrow &s_1 = \frac{r_1s_2}{r_2} \wedge s_1 = \frac{s_2t_1}{t_2}\\
+        \Leftrightarrow &\frac{r_1s_2}{r_2} = \frac{t_1s_2}{t_2}\\
+        \Leftrightarrow &r_1s_2t_2 = r_2s_2t_1\\
+        \Leftrightarrow &r_1t_2 = r_2t_1\\
+        \Leftrightarrow &(r_1, r_2) \sim (t_1, t_2).
+        \end{align*}
+        Somit ist $\sim$ eine Äquivalenzrelation.
+    \end{itemize}
+\end{enumerate}
+
+
+\section*{Aufgabe 4}
+
 
 % end document
 \end{document}

@@ -19,7 +19,12 @@
 
 % title, author etc.
 \title{Lineare Algebra I, Blatt 0}
-\author{Lorenz Bung (Matr.-Nr. 5113060), Gruppe 4\\\href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}}
+\author{Gruppe 4\\
+    Lorenz Bung (Matr.-Nr. 5113060)\\
+    \href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}\\
+    Tobias Remde (Matr.-Nr. 5100067)\\
+    \href{mailto:tobias.remde@gmx.de}{\texttt{tobias.remde@gmx.de}}
+}
 \date{\today}
 
 % begin document
@@ -66,10 +71,10 @@ $\qed$
 Induktionsbehauptung (IB): $f(n) \leq 2^{2^n}$.\\
 Induktionsanfang (IA) ($n = 0$): $f(0) = 2 \leq 2 = 2^1 = 2^{2^0}$.\\
 Induktionsschritt (IS):\\
-Nach dem Satz von Euklid existiert eine Primzahl $m := 1 + \prod\limits_{k = 0}^n f(n).$\\
-Da nicht garantiert ist, dass dies die nächstgrößere Primzahl ist, gilt zwar keine Gleichheit, jedoch auf jeden Fall $$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(n).$$\\
-Aufgrund (IB) ist
-$$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(n) \leq 1 + \prod\limits_{k = 0}^n 2^{2^n}$$
+Nach dem Satz von Euklid existiert eine Primzahl $m := 1 + \prod\limits_{k = 0}^n f(k).$\\
+Da nicht garantiert ist, dass dies die nächstgrößere Primzahl ist, gilt zwar keine Gleichheit, jedoch auf jeden Fall $$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(k).$$\\
+Aufgrund von (IB) ist
+$$f(n + 1) \leq 1 + \prod\limits_{k = 0}^n f(k) \overset{\text{(IB)}}{\leq} 1 + \prod\limits_{k = 0}^n 2^{2^k}$$
 $$= 1 + (2^{2^0} * 2^{2^1} * \dots * 2^{2^n}) = 1 + 2^{2^0 + 2^1 + \dots + 2^n} = 1 + 2^{\sum_{k=0}^{n} 2^k}$$
 $$\overset{\text{(\ref{eq1})}}{=} 1 + 2^{2^{n + 1} - 1} = \frac{2}{2} + \frac{2^{2^{n + 1}}}{2} = \frac{2^{2^{n + 1} + 1}}{2} = 2^{2^{n + 1}}.$$
 $\qed$
@@ -80,6 +85,11 @@ $\qed$
 \begin{enumerate}[(a)]
     \item Ja, da keine der durch $(0, 0)$ und $(0, 1)$ gehenden Geraden auch durch $(1, 0)$ geht.
     \item Nein, da gegenüberliegende Punkte auf dem Einheitskreis in der selben Äquivalenzklasse liegen. Beispiel: $[(0, 1)]_E = [(0, -1)]_E$.
+    \item $g$ ist kompatibel mit $E \Leftrightarrow$
+    \begin{itemize}
+         \item \textit{injektiv}: Nein, da beispielsweise $(1, 2)$ und $(2, 4)$ auf denselben Wert abbilden.
+         \item \textit{surjektiv}: Nein, da beispielsweise $\sqrt{2} \in \mathbb{R}$ nie getroffen werden kann.
+    \end{itemize}
 \end{enumerate}
 
 % end document

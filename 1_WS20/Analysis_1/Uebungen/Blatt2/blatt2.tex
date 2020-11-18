@@ -1,0 +1,176 @@
+% document setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% maths
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% utility
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[colorlinks=false,linkbordercolor=red,urlbordercolor=red]{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+
+% useful commands
+\newcommand{\qed}{\null\nobreak\hfill\square}
+
+% title, author etc.
+\title{Analysis I, Blatt 2}
+\author{
+    Gruppe 11\\
+    Lorenz Bung (Matr.-Nr. 5113060)\\
+    \href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}\\
+    Charlotte Rothhaar (Matr.-Nr. 4315016)\\
+    \href{mailto:charlotte.rothhaar97@gmail.com}{\texttt{charlotte.rothhaar97@gmail.com}}
+}
+\date{\today}
+
+% begin document
+\begin{document}
+
+\maketitle
+
+
+\section*{Aufgabe 5}
+
+\begin{enumerate}[(a)]
+    \item Vermutung: $\lim\limits_{n \to \infty} \left(\frac{1}{n^2}\right)_{n > 0} = 0.$\\
+    Zu zeigen: $\forall \varepsilon > 0 \exists n_0 \in \mathbb{N} \setminus \{0\} : |a_n - a| < \varepsilon, n \geq n_0.$\\
+    Sei also $\varepsilon > 0.$
+    Dann ist $|a_n - a| = |a_n - 0| = |a_n| \overset{n^2 > 0}{=} a_n.$
+    Wähle nun $n_0 = \frac{2}{\sqrt{\varepsilon}}.$
+    Somit ist $a_n = \frac{1}{n^2} \leq \frac{1}{{n_0}^2} = \frac{1}{(\frac{2}{\sqrt{\varepsilon}})^2} = \frac{1}{\frac{4}{\varepsilon}} = \frac{\varepsilon}{4} < \varepsilon.$
+    Damit ist $a = 0$ Grenzwert der Folge $a_n$.\\
+    $\qed$
+
+    \item Vermutung: $\lim\limits_{n \to \infty} \left(\frac{n^2+1}{n^2+n}\right)_{n>0} = 1.$\\
+    Zu zeigen: $\forall \varepsilon > 0 \exists n_0 \in \mathbb{N} \setminus \{0\} : |b_n - b| < \varepsilon, n \geq n_0.$\\
+    Sei also $\varepsilon > 0.$
+    Dann ist $|b_n - b| = |\frac{n^2+1}{n^2+n} -1|.$
+    Da $n > 0$ ist, folgt $\frac{n^2+1}{n^2+n} \leq 1$ und somit $|\frac{n^2+1}{n^2+n} -1| = -(\frac{n^2+1}{n^2+n}-1) = 1-\frac{n^2+1}{n^2+n}.$\\
+    Wähle nun $n_0 = \frac{2}{\varepsilon}-1.$ Dann ist\\
+    $|b_n -b| = |\frac{n^2+1}{n^2+n}-1| = 1 - \frac{n^2+1}{n^2+n} = \frac{n^2+n}{n^2+n} - \frac{n^2+1}{n^2+n} = \frac{n-1}{n^2+n} < \frac{n}{n^2+n} = \frac{1}{n+1} \leq \frac{1}{n_0+1} = \frac{1}{\frac{2}{\varepsilon}-1+1} = \frac{\varepsilon}{2} < \varepsilon.$\\
+    Also ist $b = 1$ Grenzwert der Folge $b_n$.\\
+    $\qed$
+
+    \item Angenommen, $c_n$ wäre konvergent gegen den Grenzwert $c.$
+    Dann gäbe es für alle $\varepsilon > 0$ ein $n_0 \in \mathbb{N}$, sodass $|c_n - c| < \varepsilon, n \geq n_0.$\\
+    Es gäbe also auch ein solches $n_0$ für $\varepsilon = \frac{1}{2}.$
+    Dann wäre\\
+    $|(-1)^n + \frac{1}{n} - c| \leq |(-1)^n| + |\frac{1}{n} + c| = 1 + |\frac{1}{n} + c| < \frac{1}{2}$\\
+    oder auch $|\frac{1}{n} + c| < -\frac{1}{2}.$\\
+    Widerspruch, da $|x| \geq 0.$ $\Rightarrow$ Divergenz.\\
+    $\qed$
+\end{enumerate}
+
+
+\section*{Aufgabe 6}
+
+\begin{enumerate}[(i)]
+    \item $(\frac{1}{n^p})_{n > 0}, p \in \mathbb{N}$ ist Teilfolge von $(\frac{1}{n})_{n > 0}$, wenn $i: \mathbb{N} \to \mathbb{N}$ mit $i_0 < i_1 < \ldots < i_n$ existiert, sodass $(\frac{1}{n^p})_{n > 0} = (\frac{1}{i_n})_{i_n > 0}$.\\
+    Diese gesuchte Folge $(i_n)_{n}$ existiert, nämlich $i_n = n^p.$
+    Somit handelt es sich um eine Teilfolge.\\
+    Um eine weitere Teilfolge der harmonischen Folge zu erhalten, muss einfach eine entsprechende Folge $(i_n)_n$ gewählt werden, beispielsweise $j_n = 2n.$
+    Somit erhält man die Teilfolge $c_n = (\frac{1}{2n})_{n > 0}.$
+
+    \item zu zeigen: Die Teilfolge $b_n$ von $a_n$ konvergiert gegen den Grenzwert $a$.
+    Beweis:\\
+    $b_n$ konvergiert genau dann, wenn $\forall \varepsilon > 0 \exists n_0 \in \mathbb{N}: |b_n - b| < \varepsilon, n \geq n_0.$
+    Da $b_n$ Teilfolge von $a_n$ ist, gilt $b_n = a_{i_n}.$\\
+    Über $a_n$ wissen wir bereits, dass für alle $\varepsilon' > 0$ ein entsprechendes $n_1$ gefunden werden kann.
+    Wir finden also auch ein $n_1$ für $\varepsilon' = -|a-b|.$\\
+    Somit ist $|b_n - b| = |a_{i_n} - a + a - b| \leq |a_{i_n} - a| + |a - b| < \varepsilon' + |a - b| = -|a - b| + |a - b| = 0 < \varepsilon.$\\
+    Damit ist der Grenzwert von $a_n$ auch der Grenzwert von $b_n$.\\
+    $\qed$
+
+    \item
+\end{enumerate}
+
+
+\section*{Aufgabe 7}
+
+\begin{enumerate}[(i)]
+    \item \label{b-ungl}Induktionsbehauptung (IB): $(1 + x)^n \geq 1 + nx,\quad n \in \mathbb{N}, x \in \mathbb{R}, x \geq -1.$\\
+    Induktionsanfang (IA) ($n=0$): $(1 + x)^0 = 1 \geq 1 = 1 + 0x.$\\
+    Induktionsschritt (IS) ($n \Rightarrow n+1$): $(1+x)^{n+1} = (1+x)^n * (1+x) \overset{\text{(IB)}}{\geq} (1+nx) * (1+x) = 1 + x + nx + nx^2 = nx^2 + (n+1)x + 1 \overset{x^2 \geq 0}{\geq} 1 + (n+1)x.$\\
+    $\qed$
+
+    \item zu zeigen: $\lim\limits_{n \to \infty} q^n = 0,\quad q \in \mathbb{R}, |q| < 1.$\\
+    Da $|q| < 1$, lässt sich auch schreiben $q = \frac{1}{s}, |s| > 1.$
+    Somit ist zu zeigen, dass $\lim\limits_{n \to \infty} (\frac{1}{s})^n = 0.$\\
+    Das ist genau dann der Fall, wenn:
+    $\forall \varepsilon > 0 \exists n_0 \in \mathbb{N} : |g_n - g| < \varepsilon, n \geq n_0.$\\
+    Mit $g = 0$ erhält man $|g_n - 0| = |g_n| = |(\frac{1}{s})^n| = \frac{1}{|s|^n} \overset{|s| > 1}{=} \frac{1}{(1 + r)^n}.$\\
+    Wähle nun $n_0 = \frac{1}{\varepsilon * x}$:
+    Dann ist $\frac{1}{(1 + r)^n} \overset{\text{\ref{b-ungl}}}{\leq} \frac{1}{1 + nx} \leq \frac{1}{nx} < \frac{1}{\frac{x}{\varepsilon * x}} = \frac{1}{\frac{1}{\varepsilon}} = \varepsilon.$\\
+    $\qed$
+
+    \item Vermutung: $\lim\limits_{n \to \infty} \sum\limits_{i=0}^n q^i = 0,\quad q \in \mathbb{R}, |q|<1.$\\
+    Beweis:\\
+    Formen wir $a_n$ zunächst einmal um:\\
+    \begin{align*}
+        a_n &= \sum\limits_{i=0}^n q^i = 1 + q + \dots + q^n\\
+        q * a_n &= q + q^2 + \dots + q^{n+1}\\
+        a_n - q * a_n &= (1 + q + \dots + q^n) - (q + q^2 + \dots + q^{n+1})\\
+        a_n (1 - q) &= 1 - q^{n+1}\\
+        a_n &= \frac{1 - q^{n+1}}{1 - q}.
+    \end{align*}\\
+    Sei $\varepsilon > 0.$
+    Aus $|q| < 1$ folgt $q^{n+1} < q.$
+    Damit ist $0 < \frac{1 - q^{n+1}}{1-q} < 1$ und daher $|\frac{1 - q^{n+1}}{1-q}| = \frac{1 - q^{n+1}}{1-q}.$
+    Wähle nun $n_0 = \log_q \frac{\varepsilon}{2q}.$
+    Dann ist\\
+    $|a_n - a| = |\frac{1-q^{n+1}}{1-q}| = \frac{1-q^{n+1}}{1-q} < \frac{-q^{n+1}}{1-q} < \frac{-q^{n+1}}{1} \leq q^{n+1} = q^n * q.$\\
+    Weiterhin $q^n * q \leq q^{n_0} * q = q^{\log_q \frac{\varepsilon}{2q}} * q = \frac{\varepsilon}{2q} * q = \frac{\varepsilon}{2} < \varepsilon.$\\
+    Damit ist $0$ der Grenzwert der Folge $a_n$.\\
+    $\qed$
+\end{enumerate}
+
+
+\section*{Aufgabe 8}
+
+\begin{enumerate}[(i)]
+    \item Annahme: $x$ ist der Grenzwert von $a_n$ und $b_n$.
+    Dann ist $\lim\limits_{n \to \infty} a_n = x = \lim\limits_{n \to \infty} b_n.$\\
+    Wähle $a_n$ und $b_n$ mit $a_n < b_n$ so, dass $a_n$ eine monoton wachsende Folge ist und $b_n$ eine monoton fallende Folge ist.\\
+    Dann ist $\lim\limits_{n \to \infty} (a_n - b_n) = 0$.
+    Damit sind beide Folgen konvergent und sie müssen denselben Grenzwert haben.
+    Wenn es einen Grenzwert $x$ gibt, ist $x \in I_n$ für alle $n \in \mathbb{N}$.
+
+    \item Jedes $x \in \mathbb{R}$ besitzt eine Folge $a_n \in \mathbb{Q}$, deren Grenzwert $x$ ist.\\
+    Annahme: Jede Folge $a_n$ besitzt eine ``Umkehrfolge'' $b_n$, welche sich aus entgegengesetzter Richtung dem Grenzwert $x$ nähert, wobei das $0$-Element ($\frac{1}{n}$) von $n$ in $b_n$ negativ ist.
+    Deshalb gibt es zu jedem $x \in \mathbb{R}$ eine Intervallschachtelung.
+
+    \item $a_n = \lim\limits_{n \to \infty} \sum\limits_{i=1}^n \frac{9}{10^i} = 1$\\
+    $b_n = 2 - \lim\limits_{n \to \infty} \sum\limits_{i=1}^n \frac{9}{10^i} = 1$\\
+    Beide Folgen $a_n$ und $b_n$ konvergieren zum Grenzwert $x=1$, sodass diese eine Intervallschachtelung $I_n := [a_n; b_n] = \{x \in \mathbb{R} | a_n \leq x \leq b_n\}$ bilden.
+\end{enumerate}
+
+
+\section*{Zusatzaufgabe}
+
+\begin{enumerate}[(i)]
+    \item Die Zahl $(a,bc9)^2$ mit $a,b,c \in \{0,\dots, 9\}$ lässt sich auch darstellen als\\
+    $(a * 10^0 + b * 10^{-1} + c * 10^{-2} + 9 * 10^{-3})^2$\\
+    $= (a * 10^0)^2 + (b * 10^{-1})^2 + (c * 10^{-2})^2 + (9 * 10^{-3})^2$\\
+    $= a^2 * 10^0 + b^2 * 10^{-2} + c^2 * 10^{-4} + 81 * 10^{-6}.$
+    Die Zahl hat also aufgrund des Summanden $81 * 10^{-6}$ in jedem Fall $6$ Nachkommastellen mit der letzten Ziffer $1$.
+    Tauscht man die $9$ gegen eine andere Ziffer $i$, endet das Quadrat der Zahl auf die letzte Ziffer von $i^2$.
+
+    \item Angenommen, $\sqrt{2}$ wäre eine Dezimalzahl mit endlich vielen Nachkommastellen.
+    Dann wäre $\sqrt{2}$ darstellbar als\\
+    $a_0 * 10^0 + a_1 * 10^{-1} + \dots + a_n * 10^{-n} = \sum\limits_{i=0}^n a_i * 10^{-i}.$\\
+    Die Zahl $2 = (\sqrt{2})^2$ wäre dann darstellbar als\\
+    $2 = {a_0}^2 * 10^0 + {a_1}^2 * 10^{-2} + \dots + {a_n}^2 * 10^{-2n} = \sum\limits_{i=0}^n {a_i}^2 * 10^{-2i}.$\\
+    Da die $2$ keine Nachkommastellen ungleich $0$ hat, müssen die entsprechenden Summanden $0$ sein und damit $2 = {a_0}^2$.\\
+    Diese (abzählbaren) Fälle können manuell überprüft werden.\\
+    $\qed$
+\end{enumerate}
+
+
+% end document
+\end{document}

@@ -1,0 +1,359 @@
+% document setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% maths
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% utility
+\usepackage{xcolor}
+\usepackage[colorlinks=false,linkbordercolor=red,urlbordercolor=red]{hyperref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+
+% useful commands and formatting
+\newcommand{\qed}{\null\nobreak\hfill\square}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{6pt}
+
+% title, author etc.
+\title{Lineare Algebra I, Blatt 2}
+\author{Gruppe 4\\
+    Lorenz Bung (Matr.-Nr. 5113060)\\
+    \href{mailto:lorenz.bung@students.uni-freiburg.de}{\texttt{lorenz.bung@students.uni-freiburg.de}}\\
+    Tobias Remde (Matr.-Nr. 5100067)\\
+    \href{mailto:tobias.remde@gmx.de}{\texttt{tobias.remde@gmx.de}}
+}
+\date{\today}
+
+% begin document
+\begin{document}
+
+\maketitle
+
+
+\section*{Aufgabe 1}
+
+\begin{enumerate}[(a)]
+    \item \textbf{Behauptung}: $g_1 \sim g_2 \Leftrightarrow \exists h \in G (hg_1h^{-1} = g_2)$ ist eine Äquivalenzrelation.\\
+
+    \textbf{Beweis}: $\sim$ ist eine Äquivalenzrelation, wenn $\sim$ \textit{reflexiv}, \textit{symmetrisch} und \textit{transitiv} ist.
+
+    \textit{Reflexivität}.\\
+    z.z.: $g_1 \sim g_1.$\\
+    Bew.: $g_1 \sim g_1 \Leftrightarrow \exists h \in G (hg_1h^{-1} = g_1).$
+    Sei $h$ das neutrale Element von $G$.
+    Dann ist $hg_1h^{-1} = eg_1e^{-1} = eg_1e = g_1.$
+
+    \textit{Symmetrie}.\\
+    z.z.: $g_1 \sim g_2 = g_2 \sim g_1$.\\
+    Bew.: $g_1 \sim g_2 \Leftrightarrow \exists h \in G (hg_1h^{-1} = g_2).$
+    Existiere also ein solches $h \in G$.
+    Dann ist \begin{align*}
+        hg_1h^{-1} &= g_2\\
+        hg_1 &= g_2h\\
+        g_1 &= h^{-1}g_2h.
+    \end{align*}
+    Wähle nun $i := h^{-1}$: Dann existiert ein $i \in G (ig_2i^{-1} = g_1)$ und somit $g_2 \sim g_1$.
+
+    \textit{Transitivität}.\\
+    z.z.: $g_1 \sim g_2 \wedge g_2 \sim g_3 \Rightarrow g_1 \sim g_3$.\\
+    Bew: $g_1 \sim g_2 \wedge g_2 \sim g_3 \Leftrightarrow \exists h,i \in G: hg_1h^{-1} = g_2 \wedge ig_2i^{-1} = g_3.$
+    Dann ist $ig_2i^{-1} = ihg_1h^{-1}i^{-1}$.
+    Da $(G, \cdot)$ eine Gruppe ist (und somit abgeschlossen), ist auch $(i \cdot h) \in G$ und damit auch $(i \cdot h)^{-1} \in G$.
+    Sei nun $l := i \cdot h$.
+    Dann ist $g_1 \sim g_3 \Leftrightarrow \exists l \in G (lg_1l^{-1} = g_3)$.
+
+    Somit ist $\sim$ reflexiv, symmetrisch und transitiv und damit eine Äquivalenzrelation.\\
+    $\qed$
+
+    \item \textbf{Behauptung}: $[e] = \{e\}$.\\
+
+    \textbf{Beweis}: $e \sim x \Leftrightarrow \exists h \in G: heh^{-1} = x$.
+    Dann ist $heh^{-1} = (he)h^{-1} = hh^{-1} = e$.
+    Also muss $x=e$ sein und damit $[e] = \{e\}$.\\
+    $\qed$
+
+    \item \textbf{Behauptung}: $(hgh^{-1})^{-1}$ liegt in der Äquivalenzklasse von $g^{-1}$.\\
+
+    \textbf{Beweis}: Aufgrund von \textit{Bemerkung 1.21} im Skript ist $(a * b)^{-1} = b^{-1} * a^{-1}$.
+    Somit ist $(hgh^{-1})^{-1} = (gh^{-1})^{-1}h^{-1} = (h^{-1})^{-1}g^{-1}h^{-1} = hg^{-1}h^{-1}$, was nach Definition in der Äquivalenzklasse von $g^{-1}$ liegt.\\
+    $\qed$\\
+
+    \textbf{Behauptung}: $(hgh^{-1})^n$ liegt in der Äquivalenzklasse von $g^{-n}$.\\
+
+    \textbf{Beweis}: $(hgh^{-1})^n = \prod\limits_{k=0}^n hgh^{-1} = hgh^{-1} * \dots * hgh^{-1}.$
+
+    Da $hgh^{-1} \in [g^{-1}]_\sim$, liegt jeder Faktor des Produkts in der Äquivalenzklasse von $g^{-1}$.
+    Somit liegt das Gesamtprodukt in der Äquivalenzklasse von $g^{-1} * g^{-1} * \dots * g^{-1}$, also in $[g^{-n}]$.\\
+    $\qed$
+
+    \item \textbf{Behauptung}: Sei $r \in \mathbb{R}^*$ und $z \in \mathbb{Z}$. Dann ist $[r] = \{r\}$ und $[z] = \{z\}$.\\
+
+    \textbf{Beweis}: Seien $g_1, g_2 \in \mathbb{R}^*$.
+    Dann ist $g_1 \sim g_2 \Leftrightarrow \exists h \in \mathbb{R}^*: hg_1h^{-1} = g_2$.
+    Da $(\mathbb{R}^*, \cdot)$ abelsch ist, ist jedoch
+    $g_2 = hg_1h^{-1} = hh^{-1}g_1 = eg_1 = g_1$.
+    Somit ist $[g_1] = \{g_1\}$.
+
+    Beweis für $(\mathbb{Z}, +)$ ist analog (abelsche Gruppe).\\
+    $\qed$
+\end{enumerate}
+
+
+\section*{Aufgabe 2}
+
+\textbf{Behauptung}: Jede injektive Abbildung $f: X \rightarrow X$ ist auch surjektiv.\\
+
+\textbf{Beweis}: Wir führen den Beweis induktiv über die Kardinalität $\#X$.
+
+\textit{Induktionsanfang} ($\#X = 0$): trivial, da in diesem Fall $X = \emptyset$.
+
+\textit{Induktionsvoraussetzung}: Sei nun $f: X \rightarrow X$ injektiv und surjektiv für $\#X = n$.
+
+\textit{Induktionsschritt} ($n \Rightarrow n+1$):
+Sei $\#X = n+1$.
+Da $f$ für eine Menge mit $n$ Elementen sowohl injektiv als auch surjektiv ist, kann jedes Element im Definitionsbereich nur auf exakt ein Element im Wertebereich abgebildet werden.
+Hat $X$ nun ein Element mehr, bleibt für dieses Element im Definitionsbereich nur noch ein Element im Wertebereich übrig, da $f$ für $\#X = n$ ja bereits bijektiv ist.
+Somit ist $f$ auch für $\#X=n+1$ bijektiv.\\
+$\qed$
+
+
+\section*{Aufgabe 3}
+
+\textbf{Behauptung}: Die Äquivalenzklasse von $(1\ 2\ 3)$ ist die folgende Menge: $[(1\ 2\ 3)] = \{id, (1\ 2\ 3), (1\ 3\ 2)\}$.
+
+\textbf{Beweis}: Ein Element $g$ ist in der Äquivalenzklasse von $(1\ 2\ 3)$, falls gilt:
+
+$\exists h \in S_4: h \cdot (1\ 2\ 3) \cdot h^{-1} = g.$
+
+Es muss also einen Zyklus $(a_1\ \dots\ a_n) \in S_4$ geben, sodass \[(a_1\ \dots\ a_n)(1\ 2\ 3)(a_n\ \dots\ a_1) = (1\ 2\ 3).\]
+
+Für die abzählbar vielen Elemente in $S_4$ kann nun einzeln geprüft werden, ob dies der Fall ist.
+Es ergibt sich, dass nur die Elemente $id$, $(1\ 2\ 3)$ und $(1\ 3\ 2)$ in $[(1\ 2\ 3)]$ liegen.\\
+$\qed$\pagebreak
+
+
+\section*{Aufgabe 4}
+
+\begin{enumerate}[(a)]
+    \item \textbf{Behauptung}: $\mathcal{M}_{2\times2}(R)$ ist ein nicht-kommutativer Ring.\\
+
+    \textbf{Beweis}: Es handelt sich um einen Ring, wenn:
+    \begin{itemize}
+        \item $(R, +)$ eine abelsche Gruppe mit neutralem Element $0_R$ ist
+        \item $(R, \cdot)$ ein Monoid mit neutralem Element $1_R$ ist
+        \item die Distributivgesetze $a \cdot (b + c) = a \cdot b + a \cdot c$ und $(a + b) \cdot c = a \cdot c + b \cdot c$ gelten.
+    \end{itemize}
+
+    \textit{Assoziativität von} $(\mathcal{M}_{2\times2}(R), +)$.\\
+    Beh.: $(\mathcal{M}_{2\times2}(R), +)$ ist assoziativ.\\
+    Bew.: Seien $a,\dots,l \in R$.
+    Dann ist
+    \begin{align*}
+    &\left(\begin{pmatrix}
+    a & b\\ c & d
+    \end{pmatrix} + \begin{pmatrix}
+    e & f\\ g & h
+    \end{pmatrix}\right) + \begin{pmatrix}
+    i & j\\ k & l
+    \end{pmatrix}\\
+    = &\begin{pmatrix}
+    a+e & b+f\\ c+g & d+h
+    \end{pmatrix} + \begin{pmatrix}
+    i & j\\ k & l
+    \end{pmatrix}\\
+    = &\begin{pmatrix}
+    a+e+i & b+f+j\\ c+g+k & d+h+l
+    \end{pmatrix}\\
+    = &\begin{pmatrix}
+    a & b\\ c & d
+    \end{pmatrix} + \begin{pmatrix}
+    e+i & f+j\\ g+k & h+l
+    \end{pmatrix}\\
+    = &\begin{pmatrix}
+    a & b\\ c & d
+    \end{pmatrix} + \left(\begin{pmatrix}
+    e & f\\ g & h
+    \end{pmatrix} + \begin{pmatrix}
+    i & j\\ k & l
+    \end{pmatrix}\right).
+    \end{align*}
+
+    \textit{Kommutativität von} $(\mathcal{M}_{2\times2}(R), +)$.\\
+    Beh.: $(\mathcal{M}_{2\times2}(R), +)$ ist kommutativ.\\
+    Bew.: Seien $a,\dots,h \in R$.
+    Dann ist
+    \begin{align*}
+        &\begin{pmatrix}
+        a & b\\ c & d
+        \end{pmatrix} + \begin{pmatrix}
+        e & f\\ g & h
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a + e & b + f\\ c + g & d + h
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        e+a & f+b\\ g+c & h+d
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        e & f\\ g & h
+        \end{pmatrix} + \begin{pmatrix}
+        a & b\\ c & d
+        \end{pmatrix}.
+    \end{align*}
+
+    \textit{Neutrales von} $(\mathcal{M}_{2\times2}(R), +)$.\\
+    Beh.: Die Matrix $0_{\mathcal{M}_{2\times2}(R)} := \begin{pmatrix}
+    0&0\\0&0
+    \end{pmatrix}$ ist das neutrale Element von $(\mathcal{M}_{2\times2}(R), +)$.\\
+    Bew.: Seien $a,\dots,d \in R$.
+    Dann ist
+    \begin{align*}
+        &\begin{pmatrix}
+        a & b\\ c & d
+        \end{pmatrix} + \begin{pmatrix}
+        0&0\\0&0
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a+0&b+0\\c+0&d+0
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix}.
+    \end{align*}
+
+    \textit{Inverses von} $(\mathcal{M}_{2\times2}(R), +)$.\\
+    Beh.: Die Matrix $\begin{pmatrix}
+    a & b\\ c & d
+    \end{pmatrix} \in \mathcal{M}_{2\times2}(R)$ mit $a,\dots,d \in R$ hat das Inverse $\begin{pmatrix}
+    -a & -b\\ -c & -d
+    \end{pmatrix}$.\\
+    Bew.: Seien also $a,\dots,d \in R$.
+    Dann ist
+    \begin{align*}
+        &\begin{pmatrix}
+        a & b\\ c & d
+        \end{pmatrix} + \begin{pmatrix}
+        -a & -b\\ -c & -d
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a-a & b-b\\ c-c & d-d
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        0&0\\0&0
+        \end{pmatrix} = 0_R.
+    \end{align*}
+
+    \textit{Assoziativität von} $(\mathcal{M}_{2\times2}(R), \cdot)$.\\
+    Beh.: $(\mathcal{M}_{2\times2}(R), \cdot)$ ist assoziativ.\\
+    Bew.: Seien $a,\dots,l \in R$.
+    Dann ist
+    \begin{align*}
+        &\left(\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix} \cdot \begin{pmatrix}
+        e&f\\g&h
+        \end{pmatrix}\right) \cdot \begin{pmatrix}
+        i&j\\k&l
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        ae + bg & af + bh\\
+        ce + dg & cf + dh
+        \end{pmatrix} \cdot \begin{pmatrix}
+        i&j\\k&l
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        aei+bgi+afk+bhk & aej+bgj+afl+bhl\\
+        cei+dgi+cfk+dhk & cej+dgj+cfl+dhl
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix} \cdot \begin{pmatrix}
+        ei+fk & ej+fl\\
+        gi+hk & gj+hl
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix} \cdot \left(\begin{pmatrix}
+        e&f\\g&h
+        \end{pmatrix} \cdot \begin{pmatrix}
+        i&j\\k&l
+        \end{pmatrix}\right).
+    \end{align*}
+
+    \textit{Neutrales von} $(\mathcal{M}_{2\times2}(R), \cdot)$.\\
+    Beh.: Die Matrix $1_{\mathcal{M}_{2\times2}(R)} := \begin{pmatrix}
+    1&0\\0&1
+    \end{pmatrix}$ ist das neutrale Element von $(\mathcal{M}_{2\times2}(R), \cdot)$.\\
+    Bew.: Seien $a,\dots,d \in R$.
+    Dann ist
+    \begin{align*}
+        &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix} \cdot \begin{pmatrix}
+        1&0\\0&1
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        1a+0b&0a+1b\\
+        1c+0d&0c+1d
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix}.
+    \end{align*}
+
+    Somit handelt es sich um einen Ring.
+
+    Die Kommutativität des Monoids $(\mathcal{M}_{2\times2}(R), \cdot)$ (und damit auch des Ringes) ist jedoch nicht erfüllt:
+    Seien $a,\dots,h \in R$.
+    Dann ist
+    \begin{align*}
+        &\begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix} \cdot \begin{pmatrix}
+        e&f\\g&h
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        ae + bg & af + bh\\
+        ce + dg & cf + dh
+        \end{pmatrix}\\
+        \neq &\begin{pmatrix}
+        ea + fc & eb + fd\\
+        ga + hc & gb + hd
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        e&f\\g&h
+        \end{pmatrix} \cdot \begin{pmatrix}
+        a&b\\c&d
+        \end{pmatrix}.
+    \end{align*}\\
+    $\qed$\pagebreak
+
+    \item \textbf{Behauptung}: Wenn $R$ positive Charakteristik $k>0$ hat, ist die Charakteristik $char\ \mathcal{M}_{2\times2}(R) = k$.\\
+    \textbf{Beweis}: \begin{align*}
+        0_{\mathcal{M}_{2\times2}(R)} = &\begin{pmatrix}
+        0_R&0_R\\0_R&0_R
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        \sum_{i=0}^{k}1_R & 0_R\\
+        0_R & \sum_{i=0}^{k}1_R
+        \end{pmatrix}\\
+        = &\begin{pmatrix}
+        \sum_{i=0}^{k}1_R & \sum_{i=0}^{k}0_R\\
+        \sum_{i=0}^{k}0_R & \sum_{i=0}^{k}1_R
+        \end{pmatrix}\\
+        = &\sum\limits_{i=0}^k\begin{pmatrix}
+        1_R & 0_R\\
+        0_R & 1_R
+        \end{pmatrix} = (1_{\mathcal{M}_{2\times2}(R)})^k.
+    \end{align*}
+    $\qed$
+\end{enumerate}
+
+
+% end document
+\end{document}

@@ -1,0 +1,4 @@
+# Ignore g++ output files
+*.o
+*.out
+Blatt01

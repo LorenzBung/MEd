@@ -8,4 +8,4 @@ before_script:
   - sudo apt-get -qq -y install g++
 
 script:
-  - cd WS21/Numerik/Praktikum/Blatt01 && ./build.sh
+  - cd 3_WS21/Numerik/Praktikum/Blatt01 && ./build.sh

@@ -4,5 +4,8 @@ os: linux
 before_install:
   - sudo apt-get -qq update
 
+before_script:
+  - sudo apt-get -qq -y install g++
+
 script:
-  - echo "All tests completed!"
+  - cd WS21/Numerik/Praktikum/Blatt01 && ./build.sh

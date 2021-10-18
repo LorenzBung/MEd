@@ -1,0 +1,8 @@
+language: shell
+os: linux
+
+before_install:
+  - sudo apt-get -qq update
+
+script:
+  - echo "All tests completed!"

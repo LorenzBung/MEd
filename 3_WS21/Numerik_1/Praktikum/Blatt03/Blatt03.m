@@ -151,11 +151,11 @@ function [x,y] = Gauss_Spaltenpivotsuche(A,b)
         p(k - 1 + mptr) = tmp;
         
         for i = k+1:n
-            L(i,k) = A(p(i),k) / A(p(k),k);
-            b(i) = b(i) - L(i,k) * b(k); 
+            L(p(i),k) = A(p(i),k) / A(p(k),k);
+            b(p(i)) = b(p(i)) - L(p(i),k) * b(p(k)); 
     
             for j = k+1:n 
-                A(p(i),j) = A(p(i),j) - L(i,k) * A(p(k),j);
+                A(p(i),j) = A(p(i),j) - L(p(i),k) * A(p(k),j);
             end
         end
     end
